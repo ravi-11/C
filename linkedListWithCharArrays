@@ -13,7 +13,8 @@ struct Node
 /*************************************/
 //prototypes
 void instructions();
-void insertNode(struct Node *head, char info[SIZE]);
+void insertNode(struct Node **head, char info);
+void deleteNode(struct Node *head);
 void printList(struct Node *head);
 /*************************************/
 void instructions()
@@ -25,47 +26,49 @@ void instructions()
 		"4 to merge sort the list\n");
 }
 /*************************************/
-void insertNode(struct Node *head,char info[SIZE])
+void insertNode(struct Node **head,char info)
 {
 	printf("Insert node method 1");
 	//new node for adding to the list
 	struct Node *newNode;
 	//ptr for current position within the list
-	struct Node *currentPtr;
-	currentPtr == NULL;
+	struct Node *currentPtr = *head;
 
 	//allocating memory for the new node to the list
 	newNode = (struct Node *)malloc(sizeof(newNode));
 
 	//inserting the new information and linker
-	newNode->data[SIZE] = info[SIZE];
-	newNode->next = NULL;
+	//newNode->data[SIZE] = info[SIZE];
+	//newNode->next = NULL;
 
 	//if a list does not exist
-	if(head == NULL)
+	if(*head == NULL)
 	{
-		head = newNode;
+		*head = newNode;
 		/*newNode = head; */
-		newNode->data[SIZE] = info[SIZE]; 
-		newNode->next = NULL;
+		//newNode->data[SIZE] = info[SIZE]; 
+		//newNode->next = NULL;
 		return;
 	}
 	//if a list exists
 	else
 	{
 		//traversing list to the end
-		while(head != NULL)
+		while(currentPtr != NULL)
 		{
 			//moving to the next node
-			head = head->next;
-			//setting currentPtr to the current position until the end
-			currentPtr = head;
+			currentPtr = currentPtr->next;
 		}
 		//adding the new node info and linker now
-		currentPtr->data[SIZE] = info[SIZE];
+		currentPtr->data[SIZE] = info;
 		currentPtr->next = NULL;
 	}	
 	return;	
+}
+/**************************************/
+void deleteNode(struct Node *head)
+{
+ 
 }
 /**************************************/
 void printList(struct Node *head)
@@ -83,7 +86,7 @@ void printList(struct Node *head)
 /*************************************/
 int main()
 {
-	struct Node *head;
+	struct Node *head = NULL;
 	char infoIn[SIZE];
 
 	int choice = 0;
@@ -99,7 +102,7 @@ int main()
 			case 1:
 				printf("Enter a word to the list\n");
 				scanf("%s",infoIn[SIZE-1]);
-				insertNode(head,infoIn);
+				insertNode(&head,infoIn);
 				printList(head); 
 				instructions();
 				scanf("%d", &choice);
