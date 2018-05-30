@@ -1,132 +1,128 @@
 #include <stdlib.h>
 #include <stdio.h>
 /*************************************/
-//char array max size
-#define SIZE 100
-/*************************************/
+#define SIZE 30
+/*************************************/ 
 //Node template
 struct Node
 {
-	char data[SIZE];
-	struct Node *next;
+         char data[SIZE];
+         struct Node *next;
 };
 /*************************************/
 //prototypes
 void instructions();
-void insertNode(struct Node **head, char info);
+void insertNode(struct Node **head, char info[]);
 void deleteNode(struct Node *head);
 void printList(struct Node *head);
 /*************************************/
 void instructions()
 {
-	printf("Enter 0 to exit the program\n"
-		"1 to insert a node to the linked list\n"
-		"2 to delete a node from the list\n"
-		"3 to quick sort the list\n"
-		"4 to merge sort the list\n");
+        printf("Enter 0 to exit the program\n"
+                "1 to insert a node to the linked list\n"
+                "2 to delete a node from the list\n"
+                "3 to quick sort the list\n"
+                "4 to merge sort the list\n");
 }
 /*************************************/
-void insertNode(struct Node **head,char info)
+void insertNode(struct Node **head,char info[])
 {
-	printf("Insert node method 1");
-	//new node for adding to the list
-	struct Node *newNode;
-	//ptr for current position within the list
-	struct Node *currentPtr = *head;
-
-	//allocating memory for the new node to the list
-	newNode = (struct Node *)malloc(sizeof(newNode));
-
-	//inserting the new information and linker
-	//newNode->data[SIZE] = info[SIZE];
-	//newNode->next = NULL;
-
-	//if a list does not exist
-	if(*head == NULL)
-	{
-		*head = newNode;
-		/*newNode = head; */
-		//newNode->data[SIZE] = info[SIZE]; 
-		//newNode->next = NULL;
-		return;
-	}
-	//if a list exists
-	else
-	{
-		//traversing list to the end
-		while(currentPtr != NULL)
-		{
-			//moving to the next node
-			currentPtr = currentPtr->next;
-		}
-		//adding the new node info and linker now
-		currentPtr->data[SIZE] = info;
-		currentPtr->next = NULL;
-	}	
-	return;	
-}
-/**************************************/
-void deleteNode(struct Node *head)
-{
+        //new node for adding to the list
+        struct Node *newNode;
+        //ptr for current position within the list
+        struct Node *currentPtr = *head;
  
+        //allocating memory for the new node to the list
+        newNode = (struct Node *)malloc(sizeof(newNode));
+ 
+ 	//if a list does not exist
+        if(*head == NULL)
+        {
+                *head = newNode;
+                /*newNode = head; */
+                //newNode->data[SIZE] = info[SIZE]; 
+                //newNode->next = NULL;
+                return;
+        }
+        //if a list exists
+	else
+        {
+                //traversing list to the end
+                while(currentPtr != NULL)
+                {
+                        //moving to the next node
+                        currentPtr = currentPtr->next;
+                }
+                //adding the new node info and linker now
+		currentPtr->data[SIZE] = info[SIZE];
+                currentPtr->next = NULL;
+        }
+        return;
 }
 /**************************************/
-void printList(struct Node *head)
+void deleteNode(struct Node *head) 
 {
-	while(head != NULL)
-	{
-		//printing the contents
-		printf("%s",head->data[SIZE]);
-		printf("->");
-		//then moving to the next node
-		head = head->next;
-	}
-	return;
+  
+ }
+ /**************************************/
+ void printList(struct Node *head)
+ {
+         while(head != NULL)
+         {
+                 //printing the contents
+                 printf("%s",head->data[SIZE]);
+                 printf("->");
+                 //then moving to the next node
+                 head = head->next;
+         }
+ 
+         printf("\n");
+         return;
+ }
+ /*************************************/
+ int main()
+ {
+         struct Node *head = NULL;
+         char infoIn[SIZE];
+ 
+         int choice = 0;
+         printf("Enter an integer to continue:\n");
+  
+         instructions();
+         scanf("%d", &choice);
+ 
+         while(choice != 0)
+         {
+                 switch(choice)
+                 {
+                         case 1:
+                                 printf("Enter a word to the list\n");
+                                 scanf("%s",infoIn[SIZE-1]);
+                                 insertNode(&head,infoIn);
+                                 printList(head);
+                                 instructions();
+                                 scanf("%d", &choice);
+                                 break;
+                         case 2:
+                                 instructions();
+                                 scanf("%d", &choice);
+                                 break;
+                         case 3:
+                                 instructions();
+                                 scanf("%d", &choice);
+                                 break;
+                         case 4:
+                                 instructions();
+                                 scanf("%d", &choice);
+                                 break;
+                         default:
+                                 printf("Invalid choice, try again\n");
+                                 instructions();
+                                 scanf("%d", &choice);
+                                 break;
+                 }
+         }
+         printf("End of run\n");
+         return 0;
 }
-/*************************************/
-int main()
-{
-	struct Node *head = NULL;
-	char infoIn[SIZE];
-
-	int choice = 0;
-	printf("Enter an integer to continue:\n");
-
-	instructions();
-	scanf("%d", &choice);
-
-	while(choice != 0)
-	{
-		switch(choice)
-		{
-			case 1:
-				printf("Enter a word to the list\n");
-				scanf("%s",infoIn[SIZE-1]);
-				insertNode(&head,infoIn);
-				printList(head); 
-				instructions();
-				scanf("%d", &choice);
-				break;
-			case 2:
-				instructions();
-				scanf("%d", &choice);
-				break;
-			case 3:
-				instructions();
-				scanf("%d", &choice);
-				break;
-			case 4:
-				instructions();
-				scanf("%d", &choice);
-				break;
-			default:
-				printf("Invalid choice, try again\n");
-				instructions();
-				scanf("%d", &choice);
-				break;
-		}
-	}
-	printf("End of run\n");
-	return 0;
-}
-/*************************************/
+/****************************************/
