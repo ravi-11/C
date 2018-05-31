@@ -12,7 +12,7 @@ struct Node
 /*************************************/
 //prototypes
 void instructions();
-void insertNode(struct Node **head, char info[]);
+void insertNode(struct Node **headPtrRef, char info[]);
 void deleteNode(struct Node *head);
 void printList(struct Node *head);
 /*************************************/
@@ -25,23 +25,22 @@ void instructions()
                 "4 to merge sort the list\n");
 }
 /*************************************/
-void insertNode(struct Node **head,char info[])
+void insertNode(struct Node **headPtrRef,char info[])
 {
         //new node for adding to the list
         struct Node *newNode;
         //ptr for current position within the list
-        struct Node *currentPtr = *head;
+        struct Node *currentPtr = *headPtrRef;
  
         //allocating memory for the new node to the list
         newNode = (struct Node *)malloc(sizeof(newNode));
  
  	//if a list does not exist
-        if(*head == NULL)
+        if(*headPtrRef == NULL)
         {
-                *head = newNode;
-                /*newNode = head; */
-                //newNode->data[SIZE] = info[SIZE]; 
-                //newNode->next = NULL;
+                *headPtrRef = newNode;
+                newNode->data[SIZE] = info[SIZE]; 
+                newNode->next = NULL;
                 return;
         }
         //if a list exists
@@ -53,7 +52,8 @@ void insertNode(struct Node **head,char info[])
                         //moving to the next node
                         currentPtr = currentPtr->next;
                 }
-                //adding the new node info and linker now
+		//when reached end of list then
+                //add the new node info and linker now
 		currentPtr->data[SIZE] = info[SIZE];
                 currentPtr->next = NULL;
         }
