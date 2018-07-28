@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 /*************************************/
 #define SIZE 30
 /*************************************/ 
@@ -28,18 +29,13 @@ void instructions()
 void insertNode(struct Node **headPtrRef,char info[])
 {
         //new node for adding to the list
-        struct Node *newNode;
-        //ptr for current position within the list
-        struct Node *currentPtr = *headPtrRef;
- 
-        //allocating memory for the new node to the list
-        newNode = (struct Node *)malloc(sizeof(newNode));
- 
+        struct Node *newNode = (struct Node *)malloc(sizeof(newNode));
+        
  	//if a list does not exist
         if(*headPtrRef == NULL)
         {
                 *headPtrRef = newNode;
-                newNode->data[SIZE] = info[SIZE]; 
+                strcpy(newNode->data,info); 
                 newNode->next = NULL;
                 return;
         }
@@ -47,15 +43,15 @@ void insertNode(struct Node **headPtrRef,char info[])
 	else
         {
                 //traversing list to the end
-                while(currentPtr != NULL)
+                while(*headPtrRef != NULL)
                 {
                         //moving to the next node
-                        currentPtr = currentPtr->next;
+                        *headPtrRef = (*headPtrRef)->next;
                 }
 		//when reached end of list then
                 //add the new node info and linker now
-		currentPtr->data[SIZE] = info[SIZE];
-                currentPtr->next = NULL;
+		strcpy(newNode->data,info);
+                newNode->next = NULL;
         }
         return;
 }
@@ -63,7 +59,7 @@ void insertNode(struct Node **headPtrRef,char info[])
 void deleteNode(struct Node *head) 
 {
   
- }
+}
  /**************************************/
  void printList(struct Node *head)
  {
@@ -97,7 +93,7 @@ void deleteNode(struct Node *head)
                  {
                          case 1:
                                  printf("Enter a word to the list\n");
-                                 scanf("%s",infoIn[SIZE-1]);
+                                 scanf("%29s",infoIn);
                                  insertNode(&head,infoIn);
                                  printList(head);
                                  instructions();
