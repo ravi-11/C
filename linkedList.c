@@ -16,7 +16,6 @@ void instructions();
 void enqueue(struct Node **headPtrRef, char info[SIZE]);
 void dequeue(struct Node **head);
 void printList(struct Node *head);
-int *testFunction();
 /*************************************/
 void instructions()
 {
