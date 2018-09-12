@@ -37,7 +37,7 @@ void enqueue(struct Node **headPtrRef,char info[SIZE])
         //if(*headPtrRef == NULL)
 	if(currentPtr == NULL)
         {
-		struct Node *newNode = malloc(sizeof * newNode);
+		struct Node *newNode = malloc(sizeof(struct Node));
                 *headPtrRef = newNode;
 		strcpy(newNode->data,info); 
                 newNode->next = NULL;
@@ -52,7 +52,7 @@ void enqueue(struct Node **headPtrRef,char info[SIZE])
                         currentPtr = currentPtr->next;
                 } 
 	
-		struct Node *tmpNode = malloc(sizeof * tmpNode);
+		struct Node *tmpNode = malloc(sizeof(struct Node));
 		strcpy(tmpNode->data,info);
 		tmpNode->next = NULL;
 		currentPtr->next = tmpNode;
