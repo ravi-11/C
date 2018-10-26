@@ -84,6 +84,7 @@ void convertStrToAscii(char **givenStrArray)
 			/* conditions check whether element ascii code is a number or character */
 			if((int)(givenStrArray[i][j]) >= 48 && (int)(givenStrArray[i][j] <= 57))
 			{
+				/* will need to use strtol c function to convert current string element to long int */
 				//printf("element decimal num is %d, and the int is %c\n",givenStrArray[i][j], givenStrArray[i][j]);
 			}
 			else if((int)(givenStrArray[i][j]) >= 65 && (int)(givenStrArray[i][j] <= 90))
