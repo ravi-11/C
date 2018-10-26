@@ -81,7 +81,7 @@ void convertStrToAscii(char **givenStrArray)
 		/* now iterating through each element in each string */
 		for(int j = 0; j < BUFFER; j++)
 		{
-				/* condition check whether element ascii code is a number */
+			/* conditions check whether element ascii code is a number or character */
 			if((int)(givenStrArray[i][j]) >= 48 && (int)(givenStrArray[i][j] <= 57))
 			{
 				//printf("element decimal num is %d, and the int is %c\n",givenStrArray[i][j], givenStrArray[i][j]);
@@ -90,7 +90,6 @@ void convertStrToAscii(char **givenStrArray)
 			{
 				//printf("element decimal num is %d, and the letter is %c\n",givenStrArray[i][j],givenStrArray[i][j]);
 			}
-
 		}
 	}
 	return;
