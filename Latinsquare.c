@@ -9,6 +9,7 @@
 /************************************************/
 char **openAndScan();
 void freeMemory(char **strsToFree);
+void convertStrToAscii(char **givenStrArray);
 bool isLatinSquare();
 /************************************************/
 char **openAndScan()
@@ -67,6 +68,26 @@ void freeMemory(char **strsToFree)
 	free(strsToFree);
 	strsToFree = NULL;
 	
+	return;
+}
+/************************************************/
+void convertStrToAscii(char **givenStrArray)
+{
+	/* First need to distinguish numbers from characters */
+
+	/* iterate through the string array first */
+	for(int i = 0; i < TOTALSTRS; i++)
+	{
+		/* now iterating through each element in each string */
+		for(int j = 0; j < BUFFER; j++)
+		{
+			/* condition check whether element ascii code is a number */
+			if((int)(givenStrArray[i][j]) > 48 && (int)(givenStrArray[i][j] < 57))
+			{
+				printf("element decimal num is %d, and the int is %c \n",givenStrArray[i][j], givenStrArray[i][j]);
+			}
+		}
+	}
 	return;
 }
 /************************************************/
