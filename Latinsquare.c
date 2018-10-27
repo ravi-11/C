@@ -56,8 +56,6 @@ char **openAndScan()
 /************************************************/
 void freeMemory(char **strsToFree)
 {
-	int i = 0;
-
 	/* loop through array freeing each string */
 	for(int i = 0; i < TOTALSTRS; i++)
 	{
