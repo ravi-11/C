@@ -1,3 +1,5 @@
+/* program that reads in a file and checks whether it is a Latin square */
+#include <inttypes.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +21,7 @@ char **openAndScan()
 
 	FILE *fp = NULL;
 	int i = 0;
-	fp = fopen("Latin.txt", "r");
+	fp = fopen("test.txt", "r");
 	
 	/* space for the number of strings */
 	char **ptrsToStrings = malloc(TOTALSTRS * sizeof(char *));
@@ -44,7 +46,6 @@ char **openAndScan()
 			i++;
 		}
 
-		printf("Now entering for loop of ptrsToStrings\n");
 		for(int k = 0; k < TOTALSTRS; k++)
 		{
 			printf("%s\n",ptrsToStrings[k]);
@@ -75,7 +76,7 @@ void convertStrToAscii(char **givenStrArray)
 {
 	/* First need to distinguish numbers from characters */
 	char *strToLptr = NULL;
-	long result = 0;
+	int result = 0;
 
 	/* iterate through the string array first */
 	for(int i = 0; i < TOTALSTRS; i++)
@@ -86,9 +87,7 @@ void convertStrToAscii(char **givenStrArray)
 			/* conditions check whether element ascii code is a number or character */
 			if((int)(givenStrArray[i][j]) >= 48 && (int)(givenStrArray[i][j] <= 57))
 			{
-				/* will need to use strtol c function to convert current string element to long int */
-				//printf("element decimal num is %d, and the int is %c\n",givenStrArray[i][j], givenStrArray[i][j]);
-				result = strtol(*givenStrArray, &strToLptr, BUFFER);
+				result = strtoimax(*(givenStrArray + i), &strToLptr, 10);
 
 					if(result == 0)
 					{
@@ -103,13 +102,12 @@ void convertStrToAscii(char **givenStrArray)
 						{
 							printf("The value provided was out of range\n");
 						}
-						/* display result */
-						printf("%lx hexadecimal\n", result);
 					}
+				printf("%d\n", result);
 			}
 			else if((int)(givenStrArray[i][j]) >= 65 && (int)(givenStrArray[i][j] <= 90))
 			{
-				//printf("element decimal num is %d, and the letter is %c\n",givenStrArray[i][j],givenStrArray[i][j]);
+
 			}
 		}
 	}
