@@ -82,9 +82,7 @@ struct Matrices *mult(struct Matrices *matriceInfo)
 struct Matrices *requestSize()
 {
 	//struct to return for the given sizes
-	struct Matrices *definedSizes = (struct Matrices*)malloc(sizeof(struct Matrices));
-
-	//struct Matrices *definedSizes;
+	struct Matrices *definedSizes = malloc(sizeof(struct Matrices));
 
 	//temp variables for the given sizes
 	int firstRow = 0, firstCol = 0, secondRow = 0, secondCol = 0;	
@@ -95,7 +93,6 @@ struct Matrices *requestSize()
 	
 	printf("\nEnter an int for number of cols for first matrix: ");
 	scanf("%1d", &firstCol);
-
 
 	printf("\nEnter an int for number of rows for second matrix: ");
 	scanf("%1d", &secondRow);
@@ -118,7 +115,7 @@ struct Matrices *requestSize()
 /*************************************************************************************/
 struct Matrices *populate(struct Matrices *info)
 {
-	struct Matrices *complete = (struct Matrices*)malloc(sizeof(struct Matrices));
+	struct Matrices *complete = malloc(sizeof(struct Matrices));
 
 	//now inputting user values into two matrices
 	complete->MatrixOne[info->MatrixOneRowSize][info->MatrixOneColumnSize];
