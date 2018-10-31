@@ -1,0 +1,180 @@
+//Tino Madrid 	
+#include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
+
+#define MAX 10
+
+
+/*************************************************************************************/
+//struct that contains corresponding information regarding the two matrices
+struct Matrices
+{
+	//first Matrix information
+	int MatrixOne[MAX][MAX];
+	int MatrixOneRowSize;
+	int MatrixOneColumnSize;
+
+	//second Matrix infomation
+	int MatrixTwo[MAX][MAX];
+	int MatrixTwoRowSize;
+	int MatrixTwoColumnSize;
+
+	//result Matrix
+	int resultMatrix[MAX][MAX];
+};
+/*************************************************************************************/
+//prototypes
+struct Matrices *mult(struct Matrices *matriceInfo);
+struct Matrices *requestSize();
+struct Matrices *populate(struct Matrices *info);
+/*************************************************************************************/
+struct Matrices *mult(struct Matrices *matriceInfo)
+{
+	//variables to help keep track of position in matrices
+	int a = 0, b = 0, c = 0, d = 0;
+
+	//variable to display our result matrix
+	
+
+	//base case
+	if(a >= matriceInfo->MatrixOneRowSize)
+	{
+		printf("Successful Multiplication");
+		return NULL;
+	}
+	else
+	{
+		if(a < matriceInfo->MatrixOneRowSize)
+		{
+			if(b < matriceInfo->MatrixTwoColumnSize) 
+			{
+				if(c < matriceInfo->MatrixOneColumnSize)
+				{
+					matriceInfo->resultMatrix[a][b] += matriceInfo->MatrixOne[a][c] * 
+									   matriceInfo->MatrixTwo[c][b];	
+					c++;
+					mult(matriceInfo);
+				}
+				c = 0;
+				b++;
+				mult(matriceInfo);
+			}
+			b = 0;
+			a++;
+			mult(matriceInfo);
+		}
+	}
+
+	for(int i = 0; i < 2; i++)
+	{
+		for(int j = 0; j < 2; j++)
+		{
+			printf("%d", matriceInfo->resultMatrix[i][j]);	
+		}
+	}
+
+	printf("\n");
+
+	return NULL;
+}
+/*************************************************************************************/
+struct Matrices *requestSize()
+{
+	//struct to return for the given sizes
+	struct Matrices *definedSizes = (struct Matrices*)malloc(sizeof(struct Matrices));
+
+	//struct Matrices *definedSizes;
+
+	//temp variables for the given sizes
+	int firstRow = 0, firstCol = 0, secondRow = 0, secondCol = 0;	
+
+	printf("C program that uses recursion for matrice multiplication\n");
+	printf("Enter an int for number of rows for first matrix: ");
+	scanf("%1d", &firstRow);
+	
+	printf("\nEnter an int for number of cols for first matrix: ");
+	scanf("%1d", &firstCol);
+
+
+	printf("\nEnter an int for number of rows for second matrix: ");
+	scanf("%1d", &secondRow);
+
+	printf("\nEnter an int for number of cols for second matrix: ");
+	scanf("%1d", &secondCol);
+
+	//now that we have the user information now we are going to assign it to 
+	//the structure that we declared in the beginning of the function
+	definedSizes->MatrixOneRowSize = firstRow; 
+	definedSizes->MatrixOneColumnSize = firstCol;
+
+
+	definedSizes->MatrixTwoRowSize = secondRow; 
+	definedSizes->MatrixTwoColumnSize = secondCol;
+
+	
+	return definedSizes;
+}
+/*************************************************************************************/
+struct Matrices *populate(struct Matrices *info)
+{
+	struct Matrices *complete = (struct Matrices*)malloc(sizeof(struct Matrices));
+
+	//now inputting user values into two matrices
+	complete->MatrixOne[info->MatrixOneRowSize][info->MatrixOneColumnSize];
+	complete->MatrixTwo[info->MatrixTwoRowSize][info->MatrixTwoColumnSize];
+	
+	printf("First Matrix\n");
+
+	//now prompting user for 1st matrix input
+	for(int i = 0; i < (info->MatrixOneRowSize); i++)
+	{
+		for(int j = 0; j < (info->MatrixOneColumnSize); j++)
+		{
+			printf("element-[%d][%d]: ",i,j);
+			scanf("%d",&complete->MatrixOne[i][j]);
+		}
+	}	
+
+	printf("Second Matrix\n");
+
+	//now populating 2nd matrix
+	for(int i = 0; i < (info->MatrixTwoRowSize); i++)
+	{
+		//first the columns 	then the rows
+		for(int j = 0; j < (info->MatrixTwoColumnSize); j++)
+		{
+			printf("element-[%d][%d]: ",i,j);
+			scanf("%d",&complete->MatrixTwo[i][j]);
+		}
+	}
+
+ 	return complete;
+}
+/*************************************************************************************/
+int main()
+{
+
+	//variable for the return value of the multiplication function
+	int result = 0;
+
+	//going to call the function to prompt the user for input
+	//and assign a variable to retrieve the return value
+	struct Matrices *x; 
+	x = requestSize();
+
+	struct Matrices *y;
+	y = populate(x);
+
+	mult(y);
+	
+	free(x);
+	x = NULL;
+
+	free(y);
+	y = NULL;
+
+	printf("Freed\n");
+	return 0;  
+}
+/*************************************************************************************/
