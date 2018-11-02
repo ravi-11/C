@@ -4,8 +4,6 @@
 #include <stddef.h>
 
 #define MAX 10
-
-
 /*************************************************************************************/
 //struct that contains corresponding information regarding the two matrices
 struct Matrices
@@ -115,12 +113,6 @@ struct Matrices *requestSize()
 /*************************************************************************************/
 struct Matrices *populate(struct Matrices *info)
 {
-	struct Matrices *complete = malloc(sizeof(struct Matrices));
-
-	//now inputting user values into two matrices
-	complete->MatrixOne[info->MatrixOneRowSize][info->MatrixOneColumnSize];
-	complete->MatrixTwo[info->MatrixTwoRowSize][info->MatrixTwoColumnSize];
-	
 	printf("First Matrix\n");
 
 	//now prompting user for 1st matrix input
@@ -129,7 +121,7 @@ struct Matrices *populate(struct Matrices *info)
 		for(int j = 0; j < (info->MatrixOneColumnSize); j++)
 		{
 			printf("element-[%d][%d]: ",i,j);
-			scanf("%d",&complete->MatrixOne[i][j]);
+			scanf("%d",&info->MatrixOne[i][j]);
 		}
 	}	
 
@@ -142,11 +134,11 @@ struct Matrices *populate(struct Matrices *info)
 		for(int j = 0; j < (info->MatrixTwoColumnSize); j++)
 		{
 			printf("element-[%d][%d]: ",i,j);
-			scanf("%d",&complete->MatrixTwo[i][j]);
+			scanf("%d",&info->MatrixTwo[i][j]);
 		}
 	}
 
- 	return complete;
+ 	return info;
 }
 /*************************************************************************************/
 int main()
