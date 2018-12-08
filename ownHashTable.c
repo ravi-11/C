@@ -18,15 +18,14 @@ struct List
 	struct Node *tail;
 };
 /**********************************************/
-/**********************************************/
 //global array and table
 struct List hashTable[23];
 /**********************************************/
 //Function prototypes
 void insert(int id, char *givenName);
 int hashFunction(int identifier);
-void search();
-void delete();
+int search(struct Node *linkedList, int key);
+void deleteNode();
 void display();
 void destroy();
 /**********************************************/
@@ -38,6 +37,10 @@ int main()
 	insert(5, "john");
 	insert(3, "aaron");
 	insert(1, "nick");
+	insert(4, "erick");
+	insert(8, "victor");
+	insert(75, "gorod");
+	insert(66, "ben");
 
 	display();
 
@@ -56,6 +59,7 @@ void insert(int id, char *givenName)
 	newNode->name = givenName;
 	newNode->next = NULL;
 	
+	int searchIndex = search(list, hashVal);
 
 	if(list == NULL)
 	{
@@ -77,7 +81,27 @@ int hashFunction(int identifier)
 	return newHashVal;
 }
 /**********************************************/
+int search(struct Node *linkedList, int key)
+{
+	int returnValue = 0;
+	struct Node *temp = linkedList;
+	
+	while(temp != NULL)
+	{
+		if(temp->hashedVal == key)
+		{
+			return returnValue;
+		}
+		temp = temp->next;
+		return returnValue++;
+	}
+	return -1;
+}
 /**********************************************/
+void deleteNode()
+{
+
+}
 /**********************************************/
 void display()
 {
