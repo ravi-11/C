@@ -51,7 +51,7 @@ void insert(int id, char *givenName)
 	struct Node *list = hashTable[hashVal].head;
 
 
-	newNode-> idNum = id;
+	newNode->idNum = id;
 	newNode->hashedVal = hashVal;
 	newNode->name = givenName;
 	newNode->next = NULL;
@@ -59,8 +59,15 @@ void insert(int id, char *givenName)
 
 	if(list == NULL)
 	{
-		
+		hashTable[hashVal].head = newNode;
+		hashTable[hashVal].tail = newNode;
 	} 	
+
+	/* linked list is present at given index */
+	else
+	{
+		
+	}
 }
 /**********************************************/
 int hashFunction(int identifier)
