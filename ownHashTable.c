@@ -43,7 +43,9 @@ int main()
 	insert(66, "ben");
 
 	display();
-
+	destroy();
+	
+	display();
 	return 0;
 }
 /**********************************************/
@@ -118,24 +120,26 @@ void display()
 	}
 }
 /**********************************************/
-/*
 void destroy()
 {
+	printf("\nNow removing the table\n");
+
 	struct Node *temp1;
 	struct Node *temp2;
 	for(int i = 0; i < 23; i++)
 	{
-		temp1 = hashTable[i];
-		temp2 = hashTable[i];
-		if(hashTable[i] != NULL)
+		temp1 = hashTable[i].head;
+		temp2 = hashTable[i].head;
+		if(hashTable[i].head != NULL)
 		{
 			while(temp1 != NULL)
 			{
 				temp2 = temp1;
-				temp1 = temp1->next;	
+				temp1 = temp1->next;
+				temp2->name = "";	
 				free(temp2);
+				temp2 = NULL;
 			}
 		}
 	}
 }
-*/
