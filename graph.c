@@ -44,11 +44,10 @@ void read()
 				if(xFlag != 1)
 				{
 					/* if the current character is a number */
-					if(buff[i] >= '0' && buff[i] <= '9')
+					if(buff[i] >= 0 && buff[i] <= 9)
 					{
 						/* we have found our x Location of adjMatrix */
 						xLoc = buff[i];
-						printf("xLoc: %d", xLoc);
 						/* we have found our first number, now on to second */
 						xFlag = 1;
 					}
@@ -58,11 +57,10 @@ void read()
 				else
 				{
 					/* is the current character a number? */
-					if(buff[i] >= '0' && buff[i] <= '9')
+					if(buff[i] >= 0 && buff[i] <= 9)
 					{
 						/* second number is our y Location of adjMatrix */
-						//yLoc = buff[i];
-						printf("yLoc: %d", yLoc);
+						yLoc = buff[i];
 						/* we now have our second number */
 						yFlag = 1;
 					}
@@ -71,7 +69,7 @@ void read()
 				/* if we have both x and y location numbers */
 				if(xFlag == 1 && yFlag == 1)
 				{
-					//printf("x:%d, y:%d",buff[xLoc], buff[yLoc]);
+					printf("x:%d, y:%d",buff[xLoc], buff[yLoc]);
 					printf("\n");
 					/* set the relationship between both numbers to true */
 					adjMatrix[xLoc][yLoc] = true;
