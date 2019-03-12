@@ -22,7 +22,8 @@ void read()
 	FILE *f = fopen("pairs.txt","r");
 	char buff[255];
 	int xFlag, yFlag;
-	int xLoc, yLoc;
+	long xLoc, yLoc;
+	char *ptr;
 
 	if(f == NULL)
 	{
@@ -35,7 +36,7 @@ void read()
 		{
 			/* grab the current line from text file and put into buff */
 			fgets(buff,6,f);
-			printf("%s",buff);
+			//printf("%s",buff); //displays what is in buffer
 			
 			/* now scan that line that is in buff */
 			for(int i = 0; i < 6; i++)
@@ -44,10 +45,13 @@ void read()
 				if(xFlag != 1)
 				{
 					/* if the current character is a number */
-					if(buff[i] >= 0 && buff[i] <= 9)
+					if(buff[i] >= '0' && buff[i] <= '9')
 					{
+						printf("First number of string is: %c\t", buff[i]);
+						long num = strtol(buff,&ptr,10);
+
 						/* we have found our x Location of adjMatrix */
-						xLoc = buff[i];
+						xLoc = num;
 						/* we have found our first number, now on to second */
 						xFlag = 1;
 					}
@@ -59,8 +63,10 @@ void read()
 					/* is the current character a number? */
 					if(buff[i] >= 0 && buff[i] <= 9)
 					{
+						//printf("Second number of string is: %d\t", buff[i]);
 						/* second number is our y Location of adjMatrix */
-						yLoc = buff[i];
+						long num = strtol(buff,&ptr,10);
+						yLoc = num;
 						/* we now have our second number */
 						yFlag = 1;
 					}
@@ -69,12 +75,14 @@ void read()
 				/* if we have both x and y location numbers */
 				if(xFlag == 1 && yFlag == 1)
 				{
-					printf("x:%d, y:%d",buff[xLoc], buff[yLoc]);
-					printf("\n");
+					//printf("x:%d, y:%d",buff[xLoc], buff[yLoc]);
+					//printf("\n");
 					/* set the relationship between both numbers to true */
 					adjMatrix[xLoc][yLoc] = true;
 				}
 			}
+			printf("\n");
+
 			/* restart for the next string that is read in */
 			xFlag = 0;
 			yFlag = 0;
