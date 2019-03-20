@@ -51,16 +51,12 @@ void read()
 					//printf("In secondIteration yLoc: %d\t", x);
 					yLoc = x;
 					secondIteration = true;
-				}
-				else
-				{
 					printf("\n");
 					printf("adjMatrix[%d][%d]\n",xLoc, yLoc);
 					adjMatrix[xLoc][yLoc] = true;
 					firstIteration = false;
 					secondIteration = false;
-					printf("\n");
-				}		
+				}
 			}
 		}
 	}
