@@ -17,7 +17,8 @@ void enqueue(struct Node **headPtrRef, char info[SIZE]);
 void dequeue(struct Node **head);
 void printList(struct Node *head);
 /*************************************/
-void instructions()
+
+void instructions() //void() function doesn't return any value
 {
         printf("Enter 0 to exit the program\n"
                 "1 to insert a node to the linked list\n"
